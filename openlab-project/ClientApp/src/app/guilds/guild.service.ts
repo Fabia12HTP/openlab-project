@@ -27,4 +27,29 @@ export class GuildService {
     leaveGuild() {
         return this.http.delete<GuildDetailsInfo>(this.guildsUrl + 'leave');
     }
+
+    //sendData() {
+    //  var inputDataElement = document.getElementById("inputData") as HTMLInputElement;
+    //  var inputData = inputDataElement.value;
+
+    //  var data = {
+    //    inputData: inputData
+    //  };
+
+    //  fetch('http://your-backend-api-endpoint/', {
+    //    method: 'PUT',
+    //    headers: {
+    //      'Content-Type': 'application/json'
+    //    },
+    //    body: JSON.stringify(data)
+    //  })
+    //    .then(response => response.json())
+    //    .then(data => {
+    //      console.log('Odpoveď zo servera:', data);
+    //    })
+    //    .catch(error => {
+    //      console.error('Chyba pri odosielaní dát:', error);
+    //    });
+    //}
+
 }

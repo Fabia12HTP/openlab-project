@@ -30,5 +30,7 @@ namespace openlab_project.Controllers
 
         private ActionResult<GuildDetailsInfo?> GetResponse(GuildDetailsInfo? guildDetail) =>
             guildDetail == null ? NotFound() : Ok(guildDetail);
+
+
     }
 }

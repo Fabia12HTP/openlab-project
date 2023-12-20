@@ -1,14 +1,19 @@
 <h1>Currently existing guilds!</h1>
 
+<p>
+  <a mat-raised-button color="primary" [routerLink]="['/guildcreate']">Create new guild</a>
+</p>
+
 <mat-accordion>
-    <mat-expansion-panel hideToggle *ngFor="let guild of guilds()">
-        <mat-expansion-panel-header>
-            <mat-panel-title> {{guild.name}} </mat-panel-title>
-            <mat-panel-description> [{{ guild.membersCount }}/{{ guild.capacity }}]</mat-panel-description>
-        </mat-expansion-panel-header>
-        <p>{{ guild.description }}</p>
-        <p>
-            <a mat-raised-button color="primary" [title]="guild.name + ' details'" [routerLink]="['/guilds', guild.id]">Details</a>
-        </p>
-    </mat-expansion-panel>
+  <mat-expansion-panel hideToggle *ngFor="let guild of guilds()">
+
+    <mat-expansion-panel-header>
+      <mat-panel-title> {{guild.name}} </mat-panel-title>
+      <mat-panel-description> [{{ guild.membersCount }}/{{ guild.capacity }}]</mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>{{ guild.description }}</p>
+    <p>
+      <a mat-raised-button color="primary" [title]="guild.name + ' details'" [routerLink]="['/guilds', guild.id]">Details</a>
+    </p>
+  </mat-expansion-panel>
 </mat-accordion>
