@@ -31,6 +31,10 @@ namespace openlab_project.Controllers
         private ActionResult<GuildDetailsInfo?> GetResponse(GuildDetailsInfo? guildDetail) =>
             guildDetail == null ? NotFound() : Ok(guildDetail);
 
+        [HttpPost("guildcreate")]
+        public ActionResult<GuildCreate?> CreateGuild([FromBody] GuildIdDto guildIdDto) =>
+           GetResponse(_guildService.CreateGuild(GetCurrentUser(),GuildCreate.;
+
 
     }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
@@ -10,12 +11,21 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class CreateGuildComponent {
   guildForm = new FormGroup({
-    name: new FormControl(''),
-    description: new FormControl(''),
-    maxmember: new FormControl(''),
+    name: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
+    maxmember: new FormControl('', Validators.required),
   })
 
   onSubmit() {
     console.warn(this.guildForm.value);
+    
   }
 }
+export interface GuildInfo {
+  id: number;
+  name: string;
+  capacity: number;
+  description: string;
+  membersCount: number;
+}
+

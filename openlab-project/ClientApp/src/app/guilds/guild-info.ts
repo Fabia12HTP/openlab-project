@@ -5,3 +5,9 @@ export interface GuildInfo {
     description: string;
     membersCount: number;
 }
+
+export interface GuildCreate {
+  name: string;
+  description: string;
+  maxmember: number;
+}
