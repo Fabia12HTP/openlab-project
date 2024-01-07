@@ -10,5 +10,6 @@ namespace openlab_project.Services
         IEnumerable<GuildInfo> GetGuildInfo();
         GuildDetailsInfo? AddCurrentUserToGuild(ApplicationUser? user, int guildId);
         GuildDetailsInfo? RemoveCurrentUserFromGuild(ApplicationUser? user);
+        CreateGuild? CreateGuild(CreateGuild? guild);
     }
 }

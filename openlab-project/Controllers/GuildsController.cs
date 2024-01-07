@@ -28,8 +28,18 @@ namespace openlab_project.Controllers
         public ActionResult<GuildDetailsInfo?> LeaveGuild() =>
             GetResponse(_guildService.RemoveCurrentUserFromGuild(GetCurrentUser()));
 
+        [HttpPost("guildcreate")]
+        public ActionResult<CreateGuild?> CreateGuild([FromBody] CreateGuild? guild) =>
+            GetAnotherResponse(_guildService.CreateGuild(guild));
+
+
         private ActionResult<GuildDetailsInfo?> GetResponse(GuildDetailsInfo? guildDetail) =>
             guildDetail == null ? NotFound() : Ok(guildDetail);
+
+
+        private ActionResult<CreateGuild?> GetAnotherResponse(CreateGuild? guildDetail) =>
+            guildDetail == null ? NotFound() : Ok(guildDetail);
+
 
 
     }

@@ -58,6 +58,19 @@ namespace openlab_project.Services
             return MapGuildToDto(guildToJoin, guildToJoin.Members);
         }
 
+        public CreateGuild? CreateGuild(CreateGuild guild)
+        {
+            var guildtocreate = new Guild()
+            {
+                Name = guild.GuildName,
+                Description = guild.GuildDescription,
+                Capacity = guild.GuildMaxCapacity,
+            };
+            _context.Add(guildtocreate);
+            _context.SaveChanges();
+            return guild;
+        }
+
         public GuildDetailsInfo? RemoveCurrentUserFromGuild(ApplicationUser? user)
         {
             if (user?.Guild == null)

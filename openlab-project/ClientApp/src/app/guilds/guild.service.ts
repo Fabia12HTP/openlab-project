@@ -3,53 +3,37 @@ import { Inject, Injectable } from '@angular/core';
 import { GuildInfo } from './guild-info';
 import { Observable } from 'rxjs/internal/Observable';
 import { GuildDetailsInfo } from '../guild-details/guild-details-info';
+import { guildcreate } from './create-guild/create-guild.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GuildService {
-    private guildsUrl = this.baseUrl + 'guilds/';
-    
-    constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
+  private guildsUrl = this.baseUrl + 'guilds/';
 
-    getGuildList() {
-        return this.http.get<GuildInfo[]>(this.guildsUrl);
-    }
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
-    getGuildDetail(guildId: number): Observable<GuildDetailsInfo> {
-        return this.http.get<GuildDetailsInfo>(this.guildsUrl + guildId);
-    }
+  getGuildList() {
+    return this.http.get<GuildInfo[]>(this.guildsUrl);
+  }
 
-    addCurrentUserToGuild(guildId: number): Observable<GuildDetailsInfo> {
-        return this.http.post<GuildDetailsInfo>(this.guildsUrl + 'join', { guildId });
-    }
+  getGuildDetail(guildId: number): Observable<GuildDetailsInfo> {
+    return this.http.get<GuildDetailsInfo>(this.guildsUrl + guildId);
+  }
 
-    leaveGuild() {
-        return this.http.delete<GuildDetailsInfo>(this.guildsUrl + 'leave');
-    }
+  addCurrentUserToGuild(guildId: number): Observable<GuildDetailsInfo> {
+    return this.http.post<GuildDetailsInfo>(this.guildsUrl + 'join', { guildId });
+  }
 
-    //sendData() {
-    //  var inputDataElement = document.getElementById("inputData") as HTMLInputElement;
-    //  var inputData = inputDataElement.value;
+  leaveGuild() {
+    return this.http.delete<GuildDetailsInfo>(this.guildsUrl + 'leave');
+  }
 
-    //  var data = {
-    //    inputData: inputData
-    //  };
+  saveGuild(guild : guildcreate) : Observable<guildcreate>{
+    return this.http.post<guildcreate>(this.guildsUrl + 'guildcreate', guild)
+  }
 
-    //  fetch('http://your-backend-api-endpoint/', {
-    //    method: 'PUT',
-    //    headers: {
-    //      'Content-Type': 'application/json'
-    //    },
-    //    body: JSON.stringify(data)
-    //  })
-    //    .then(response => response.json())
-    //    .then(data => {
-    //      console.log('Odpoveď zo servera:', data);
-    //    })
-    //    .catch(error => {
-    //      console.error('Chyba pri odosielaní dát:', error);
-    //    });
-    //}
-
+  //createNewGuild(data: any): Observable<any> {
+  //  return this.http.post(this.guildsUrl + 'guildcreate', data);
+  //}
 }
