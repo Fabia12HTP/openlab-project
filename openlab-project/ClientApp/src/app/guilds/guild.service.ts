@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { GuildInfo } from './guild-info';
+import { GuildCreate, GuildInfo } from './guild-info';
 import { Observable } from 'rxjs/internal/Observable';
 import { GuildDetailsInfo } from '../guild-details/guild-details-info';
 import { guildcreate } from './create-guild/create-guild.component';
@@ -32,8 +32,4 @@ export class GuildService {
   saveGuild(guild : guildcreate) : Observable<guildcreate>{
     return this.http.post<guildcreate>(this.guildsUrl + 'guildcreate', guild)
   }
-
-  //createNewGuild(data: any): Observable<any> {
-  //  return this.http.post(this.guildsUrl + 'guildcreate', data);
-  //}
 }
