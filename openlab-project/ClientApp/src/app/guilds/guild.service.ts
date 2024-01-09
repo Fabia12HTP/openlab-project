@@ -33,3 +33,4 @@ export class GuildService {
     return this.http.post<guildcreate>(this.guildsUrl + 'guildcreate', guild)
   }
 }
+

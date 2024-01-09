@@ -1,7 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { GuildService } from '../guild.service';
 import { Subject, takeUntil } from 'rxjs';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   standalone: true,
@@ -14,6 +16,8 @@ export class CreateGuildComponent {
 
   newGuild = signal<guildcreate>(undefined);
   private destroy$ = new Subject<void>();
+  snackBar = inject(MatSnackBar);
+
 
 
   guildForm = new FormGroup({
@@ -22,7 +26,7 @@ export class CreateGuildComponent {
     capacity: new FormControl('', Validators.required),
   });
 
-  constructor(private guildservice: GuildService) { }
+  constructor(private guildservice: GuildService, private router: Router) { }
 
   onSubmit() {
     var newGuild = {
@@ -30,7 +34,27 @@ export class CreateGuildComponent {
       guildDescription: this.guildForm.controls['description'].value,
       guildMaxCapacity: this.guildForm.controls['capacity'].value
     }
-    this.guildservice.saveGuild(newGuild).pipe(takeUntil(this.destroy$)).subscribe()
+    this.guildservice.saveGuild(newGuild)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe()
+    this.ShowSnack(newGuild, 'You have created the guild!', 'Something went wrong!');
+    this.router.navigate(['/guilds']);
+    
+
+
+  }
+
+  private ShowSnack(newGuild: guildcreate, successMessage: string, failMessage: string) {
+    if (newGuild) {
+      this.AnotherShowSnack(successMessage);
+    }
+    else {
+      this.AnotherShowSnack(failMessage);
+    }
+  }
+
+  private AnotherShowSnack(message: string) {
+    this.snackBar.open(message, null, { duration: 3000 });
   }
 }
 export interface guildcreate{
