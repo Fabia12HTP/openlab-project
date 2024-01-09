@@ -37,6 +37,8 @@ namespace openlab_project.Controllers
             guildDetail == null ? NotFound() : Ok(guildDetail);
 
 
+
+
         private ActionResult<CreateGuild?> GetAnotherResponse(CreateGuild? guildDetail) =>
             guildDetail == null ? NotFound() : Ok(guildDetail);
 
