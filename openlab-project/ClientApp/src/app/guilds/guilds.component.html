@@ -4,8 +4,10 @@
   <a mat-raised-button color="primary" [routerLink]="['/guildcreate']">Create new guild</a>
 </p>
 
+<input class="form-control" type="text" placeholder="Search" [(ngModel)]="searchText" />
+
 <mat-accordion>
-  <mat-expansion-panel hideToggle *ngFor="let guild of guilds()">
+  <mat-expansion-panel hideToggle *ngFor="let guild of guilds() | search: searchText">
 
     <mat-expansion-panel-header>
       <mat-panel-title> {{guild.name}} </mat-panel-title>

@@ -24,6 +24,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GuildDetailsComponent } from './guild-details/guild-details.component';
 import { CreateGuildComponent } from './guilds/create-guild/create-guild.component';
+import { SearchPipe } from './guilds/search.pipe'; 
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CreateGuildComponent } from './guilds/create-guild/create-guild.compone
     FetchDataComponent,
     GuildsComponent,
     GuildDetailsComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

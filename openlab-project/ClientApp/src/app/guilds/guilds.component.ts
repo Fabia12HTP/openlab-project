@@ -14,6 +14,8 @@ export class GuildsComponent implements OnInit, OnDestroy {
 
     private destroy$ = new Subject<void>();
 
+    searchText = '';
+
     guilds = signal<GuildInfo[]>([]);
 
     ngOnInit(): void {

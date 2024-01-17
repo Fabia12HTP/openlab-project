@@ -1,9 +1,9 @@
 export interface GuildInfo {
-    id: number;
-    name: string;
-    capacity: number;
-    description: string;
-    membersCount: number;
+  id: number;
+  name: string;
+  capacity: number;
+  description: string;
+  membersCount: number;
 }
 
 export interface GuildCreate {
