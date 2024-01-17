@@ -5,6 +5,7 @@ import { GuildDetailsInfo } from './guild-details-info';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { inject } from '@angular/core';
 import { AuthorizeService } from '../../api-authorization/authorize.service';
+import { GuildInfo } from '../guilds/guild-info';
 
 @Component({
     selector: 'app-guild-details',
@@ -55,6 +56,15 @@ export class GuildDetailsComponent implements OnInit, OnDestroy {
 
     private showSnack(message: string) {
         this.snackBar.open(message, null, {duration: 3000});
+  }
+
+   constructor(private guildservice: GuildService) { }
+
+    removeGuild(guildId) {
+      this.guildservice.removeGuild(guildId)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe()
+    //this.router.navigate(['/guilds']);
     }
 
     ngOnDestroy(): void {

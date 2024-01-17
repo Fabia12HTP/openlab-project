@@ -32,5 +32,9 @@ export class GuildService {
   saveGuild(guild : guildcreate) : Observable<guildcreate>{
     return this.http.post<guildcreate>(this.guildsUrl + 'guildcreate', guild)
   }
+
+  removeGuild(guildId: number): Observable<number> {
+    return this.http.delete<number>(this.guildsUrl + 'remove')
+  }
 }
 

@@ -39,9 +39,6 @@ export class CreateGuildComponent {
       .subscribe()
     this.ShowSnack(newGuild, 'You have created the guild!', 'Something went wrong!');
     this.router.navigate(['/guilds']);
-    
-
-
   }
 
   private ShowSnack(newGuild: guildcreate, successMessage: string, failMessage: string) {
