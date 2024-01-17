@@ -1,9 +1,10 @@
-import { Component, Input, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, computed, signal } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { GuildService } from '../guilds/guild.service';
 import { GuildDetailsInfo } from './guild-details-info';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { AuthorizeService } from '../../api-authorization/authorize.service';
 import { GuildInfo } from '../guilds/guild-info';
 
@@ -18,9 +19,14 @@ export class GuildDetailsComponent implements OnInit, OnDestroy {
     snackBar = inject(MatSnackBar);
 
     @Input('guildId') guildIdFromRoute: number;
-    private destroy$ = new Subject<void>();
+    private destroy$ = new Subject<void>(); 
+
+    private user = toSignal(this.authService.getUser());
 
     guildDetail = signal<GuildDetailsInfo>(undefined);
+    isUserInGuild =
+      computed(() => !!this.guildDetail()?.members.
+        find(member => member.name === this.user.name))
 
     ngOnInit(): void {
         if (this.guildIdFromRoute) {
