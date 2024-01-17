@@ -1,20 +1,21 @@
 <ng-container *ngIf="guildDetail()">
-    <h1><b>{{guildDetail().name}}</b></h1>
-    <p>{{guildDetail().description}}</p>
-    <mat-divider></mat-divider>
-    <div class="guild-members">
-        <h2>Guild members</h2>
-        <button mat-raised-button color="primary" (click)="leaveGuild()">Leave Guild</button>
-        <button mat-raised-button color="primary" (click)="joinGuild()">Join Guild</button>
+  <h1><b>{{guildDetail().name}}</b></h1>
+  <p>{{guildDetail().description}}</p>
+  <mat-divider></mat-divider>
+  <div class="guild-members">
+    <h2>Guild members</h2>
+    <button mat-raised-button color="primary" (click)="leaveGuild()">Leave Guild</button>
+    <button mat-raised-button color="primary" (click)="joinGuild()">Join Guild</button>
+  </div>
+  <div *ngIf="guildDetail().members.length; else noMembers">
+    <p *ngFor="let member of guildDetail().members">
+      {{ member.name }}
+    </p>
+  </div>
+  <ng-template #noMembers>
+    <div>
+      Guild has no member at the moment.
     </div>
-    <div *ngIf="guildDetail().members.length; else noMembers">
-      <p *ngFor="let member of guildDetail().members">
-        {{ member.name }}
-      </p>
-    </div>
-    <ng-template #noMembers>
-        <div>
-            Guild has no member at the moment.
-        </div>
-    </ng-template>
+  </ng-template>
+  <button type="button" (click)="removeGuild()">Delete this guild</button>
 </ng-container>

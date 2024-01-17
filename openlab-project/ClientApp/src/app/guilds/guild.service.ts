@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { GuildCreate, GuildInfo } from './guild-info';
+import { GuildCreate, GuildIdDto, GuildInfo } from './guild-info';
 import { Observable } from 'rxjs/internal/Observable';
 import { GuildDetailsInfo } from '../guild-details/guild-details-info';
 import { guildcreate } from './create-guild/create-guild.component';
@@ -33,8 +33,8 @@ export class GuildService {
     return this.http.post<guildcreate>(this.guildsUrl + 'guildcreate', guild)
   }
 
-  removeGuild(guildId: number): Observable<number> {
-    return this.http.delete<number>(this.guildsUrl + 'remove')
+  removeGuild(guildId: number) {
+    return this.http.delete<number>(this.guildsUrl + guildId)
   }
 }
 

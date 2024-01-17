@@ -11,6 +11,6 @@ namespace openlab_project.Services
         GuildDetailsInfo? AddCurrentUserToGuild(ApplicationUser? user, int guildId);
         GuildDetailsInfo? RemoveCurrentUserFromGuild(ApplicationUser? user);
         CreateGuild? CreateGuild(CreateGuild? guild);
-        GuildIdDto? RemoveGuild(GuildIdDto? guildId);
+        int RemoveGuild(int guildId);
     }
 }

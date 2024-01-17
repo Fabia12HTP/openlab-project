@@ -11,3 +11,7 @@ export interface GuildCreate {
   description: string;
   maxmember: number;
 }
+
+export interface GuildIdDto {
+  guildId: number;
+}

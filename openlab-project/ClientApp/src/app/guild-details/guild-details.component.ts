@@ -66,10 +66,10 @@ export class GuildDetailsComponent implements OnInit, OnDestroy {
 
    constructor(private guildservice: GuildService) { }
 
-    removeGuild(guildId) {
-      this.guildservice.removeGuild(guildId)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe()
+  removeGuild() {
+    this.guildService.removeGuild(this.guildIdFromRoute)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe();
     //this.router.navigate(['/guilds']);
     }
 

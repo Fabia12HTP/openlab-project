@@ -71,14 +71,13 @@ namespace openlab_project.Services
             return guild;
         }
 
-        public GuildIdDto? RemoveGuild(GuildIdDto guildId)
+        public int RemoveGuild(int guildId)
         {
-            Guild guildToBeRemoved = _context.Guild.Single(x => x.Id == guildId.GuildId);
-            if (guildToBeRemoved == null) { return null; }
+            Guild guildToBeRemoved = _context.Guild.Single(x => x.Id == guildId);
             _context.Remove(guildToBeRemoved);
             _context.SaveChanges();
 
-            return new GuildIdDto() { GuildId = guildToBeRemoved.Id };
+            return guildToBeRemoved.Id;
         }
 
         public GuildDetailsInfo? RemoveCurrentUserFromGuild(ApplicationUser? user)
