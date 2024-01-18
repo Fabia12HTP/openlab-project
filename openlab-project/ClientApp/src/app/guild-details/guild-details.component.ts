@@ -7,6 +7,7 @@ import { inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { AuthorizeService } from '../../api-authorization/authorize.service';
 import { GuildInfo } from '../guilds/guild-info';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-guild-details',
@@ -64,14 +65,29 @@ export class GuildDetailsComponent implements OnInit, OnDestroy {
         this.snackBar.open(message, null, {duration: 3000});
   }
 
-   constructor(private guildservice: GuildService) { }
+  constructor(private guildservice: GuildService, private router: Router) { }
 
   removeGuild() {
     this.guildService.removeGuild(this.guildIdFromRoute)
       .pipe(takeUntil(this.destroy$))
       .subscribe();
+    this.ShowSnack(this.guildIdFromRoute, 'You have deleted the guild!', 'Something went wrong!');
     //this.router.navigate(['/guilds']);
+  }
+
+  private ShowSnack(guildIdFromRoute , successMessage: string, failMessage: string) {
+    if (guildIdFromRoute) {
+      this.AnotherShowSnack(successMessage);
     }
+    else {
+      this.AnotherShowSnack(failMessage);
+    }
+  }
+
+  private AnotherShowSnack(message: string) {
+    this.snackBar.open(message, null, { duration: 3000 });
+  }
+   
 
     ngOnDestroy(): void {
         this.destroy$.next();
