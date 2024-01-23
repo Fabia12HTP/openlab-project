@@ -38,7 +38,7 @@ export class CreateGuildComponent {
       .pipe(takeUntil(this.destroy$))
       .subscribe()
     this.ShowSnack(newGuild, 'You have created the guild!', 'Something went wrong!');
-    this.router.navigate(['/guilds']);
+    this.router.navigate(['/guilds']).then(() => { window.location.reload(); });
   }
 
   private ShowSnack(newGuild: guildcreate, successMessage: string, failMessage: string) {

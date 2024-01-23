@@ -65,14 +65,14 @@ export class GuildDetailsComponent implements OnInit, OnDestroy {
         this.snackBar.open(message, null, {duration: 3000});
   }
 
-  constructor(private guildservice: GuildService, private router: Router) { }
+  constructor(private guildservice: GuildService,/* private router: Router*/) { }
 
   removeGuild() {
     this.guildService.removeGuild(this.guildIdFromRoute)
       .pipe(takeUntil(this.destroy$))
       .subscribe();
     this.ShowSnack(this.guildIdFromRoute, 'You have deleted the guild!', 'Something went wrong!');
-    //this.router.navigate(['/guilds']);
+    //this.router.navigate(['/guilds']).then(() => { window.location.reload(); });
   }
 
   private ShowSnack(guildIdFromRoute , successMessage: string, failMessage: string) {
